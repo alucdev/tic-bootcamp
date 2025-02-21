@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIVERSIDAD NACIONAL LAM</title>
+    <style>
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #6d674f;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 200px;
+            height: auto;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            display: inline-block;
+            
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 8px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="button"] {
+            background-color: #72614a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .resultado.aprobado {
+            color: green;
+        }
+
+        .resultado.reprobado {
+            color: red;
+        }
+
+        .radio-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>UNIVERSIDAD NACIONAL LAM</h1>
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="LogoLAM.jpg" alt="Logo Universidad Nacional LAM">
+            <div class="description">
+                El Sistema de Cálculo de Promedio de la Universidad Nacional LAM permite calcular rápidamente el promedio de notas de 0.0 a 5.0 de los estudiantes y determinar si han aprobado o reprobado según los criterios establecidos.
+            </div>
+        </div>
+
+    
+
+        <!-- Formulario de Notas -->
+        <label for="nota1">Nota 1:</label>
+        <input type="number" id="nota1" min="0" max="5" required>
+        
+        <label for="nota2">Nota 2:</label>
+        <input type="number" id="nota2" min="0" max="5" required>
+        
+        <label for="nota3">Nota 3:</label>
+        <input type="number" id="nota3" min="0" max="5" required>
+        
+        <br><br>
+        
+        <input type="button" value="Calcular Promedio" onclick="calcularPromedio()">
+        
+        <div class="resultado" id="resultado"></div>
+
+        <!-- Radio para aprobar o reprueba -->
+        <div class="radio-container">
+            <input type="radio" id="aprueba" name="estado" disabled>
+            <label for="aprueba">APRUEBA</label>
+            <input type="radio" id="reprueba" name="estado" disabled>
+            <label for="reprueba">REPRUEBA</label>
+        </div>
+    </div>
+
+    <script>
+        function calcularPromedio() {
+            // Obtener las notas
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const nota3 = parseFloat(document.getElementById('nota3').value);
+            
+            // Validar si las notas están en el rango adecuado
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || 
+                nota1 < 0 || nota1 > 5 || 
+                nota2 < 0 || nota2 > 5 || 
+                nota3 < 0 || nota3 > 5) {
+                alert('Por favor ingrese notas válidas entre 0 y 5');
+                return;
+            }
+
+            // Calcular el promedio
+            const promedio = (nota1 + nota2 + nota3) / 3;
+
+            // Mostrar el promedio
+            const resultado = document.getElementById('resultado');
+            resultado.textContent = `Promedio: ${promedio.toFixed(2)}`;
+
+            // Establecer el estado aprobado o reprobado
+            if (promedio >= 3) {
+                // Aprueba
+                resultado.className = 'resultado aprobado';
+                document.getElementById('aprueba').checked = true;
+                document.getElementById('reprueba').checked = false;
+            } else {
+                // Reprueba
+                resultado.className = 'resultado reprobado';
+                document.getElementById('reprueba').checked = true;
+                document.getElementById('aprueba').checked = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
