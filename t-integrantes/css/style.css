@@ -3,8 +3,13 @@ h1{
     font-family: Arial, Helvetica, sans-serif;
 }
 h2{
-    text-align: center;
-    color: black;
+    font-family: 'Playfair Display', serif;
+            font-size: 2rem; /* Tamaño grande */
+            color: #6e277e; /* Un color azul claro */
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+            letter-spacing: 2px; /* Espaciado entre letras */
+            margin-top: 30px;
 }
 h4{
     color:#554f4f
@@ -67,7 +72,7 @@ header {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #000000; /* Recuadro alrededor de la imagen */
+    border: 5px solid #542e9e; /* Recuadro alrededor de la imagen */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -110,10 +115,10 @@ details.show{
 }
 
 footer {
-    background-color: #3e5a77;
+    background-image:linear-gradient(to left, #3368c9, #7d3b9c) ;
     color: white;
     text-align: center;
-    padding: 10px 10px;
+    padding: 25px 10px;
     position: fixed;
     width: 100%;
     bottom: 0;
